@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Color codes for output
+RED='\e[31m'
+GREEN='\e[32m'
+RESET='\e[0m'
+
+# variables
+step=1
+hits=0
+misses=0
+declare -a numbers
+
+# Function to calculate percentages
+calculate_percentages() {
+  total=$((hits + misses))
+  if ((total > 0)); then
+    hit_percent=$((hits * 100 / total))
+    miss_percent=$((100 - hit_percent))
+  else
+    hit_percent=0
+    miss_percent=0
+  fi
+}
+
+# MAIN LOOP
+while true; do
+  # Generate a random number between 0 and 9
+  random_number=${RANDOM: -1}
+
+  echo -e "Step: ${step}"
+  read -p "Please enter number from 0 to 9 (q - quit): " user_input
+
+  # Input validation
+  if [[ "$user_input" == "q" ]]; then
+    echo "Bye! Thanks for playing."
+    break
+  elif [[ ! "$user_input" =~ ^[0-9]$ ]]; then
+    echo "Input error! Please enter a number from 0 to 9 or 'q' to quit."
+    continue
+  fi
+
+  # Check user's guess and update statistics
+  if ((user_input == random_number)); then
+    echo -e "${GREEN}Hit!${RESET} My number: ${random_number}"
+    hits=$((hits + 1))
+    numbers+=("${GREEN}${random_number}${RESET}")
+  else
+    echo -e "${RED}Miss!${RESET} My number: ${random_number}"
+    misses=$((misses + 1))
+    numbers+=("${RED}${random_number}${RESET}")
+  fi
+
+  # Maintain only the last 10 numbers
+  if (( ${#numbers[@]} > 10 )); then
+    numbers=(${numbers[@]:1})
+  fi
+
+  # display statistics
+  calculate_percentages
+  echo "Hit: ${hit_percent}% Miss: ${miss_percent}%"
+  echo -e "Numbers: ${numbers[*]}"
+
+  # Increment step counter
+  step=$((step + 1))
+done
