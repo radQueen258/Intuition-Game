@@ -1,105 +1,77 @@
-# Intuition Game
+### README: How to Run the `intuition` Script on Ubuntu
 
-## Overview
-This is a Java-based number guessing game inspired by a shell script. The program generates random numbers and tracks user input to calculate hit and miss percentages. It uses color-coded output to enhance readability in the terminal.
+How to run the `intuition` game script on an Ubuntu machine.
 
-## Prerequisites
-- **Java Development Kit (JDK):** Version 8 or higher
-- **Operating System:** Linux (tested on Ubuntu 24.04) or any OS with a terminal
-- **Terminal:** Bash shell version 5.2 or higher
-- **Text Editor/IDE:** VS Code or similar
+---
 
-## How to Compile and Run
+### **1. Prerequisites**
+- A Unix-like operating system (e.g., Ubuntu 24.04 or later).
+- `bash` version 5.2 or higher installed.
 
-1. **Download the Code**
-   Save the code in a file named `Intuition.java`.
+---
 
-2. **Navigate to the Directory**
-   Open a terminal and navigate to the directory containing `Intuition.java`. For example:
+### **2. Steps to Run the Script**
+
+#### **Step 1: Save the Script**
+1. Copy the script code provided.
+2. Open the terminal and create the file:
    ```bash
-   cd /path/to/your/directory
+   nano intuition
    ```
+3. Paste the script code into the file.
+4. Save and exit:
+   - Press `Ctrl + X`.
+   - Type `Y` to confirm saving.
+   - Press `Enter` to save the file as `intuition`.
 
-3. **Compile the Program**
-   Compile the Java file using `javac`:
-   ```bash
-   javac Intuition.java
-   ```
-   - This will generate a `Intuition.class` file in the same directory.
+---
 
-4. **Run the Program**
-   Execute the program using:
-   ```bash
-   java Intuition
-   ```
-
-5. **Optional: Using Packages**
-   If the code includes a `package` declaration (e.g., `package intuitio;`), ensure that:
-   - The file `Intuition.java` is located in a directory matching the package name (e.g., `intuitio/`).
-   - Compile the program from the parent directory:
-     ```bash
-     javac intuitio/Intuition.java
-     ```
-   - Run the program using the fully qualified class name:
-     ```bash
-     java intuitio.Intuition
-     ```
-
-## Gameplay Instructions
-1. **Start the Program**:
-   The program will display the current step and prompt you to:
-   - Enter a number between 0 and 9.
-   - Type `q` to quit the game.
-
-2. **Game Output**:
-   - The program will inform you if your guess was correct ("Hit") or incorrect ("Miss").
-   - It will display statistics:
-     - Hit percentage
-     - Miss percentage
-   - The last 10 random numbers will be displayed:
-     - Correct guesses in **green**.
-     - Missed guesses in **red**.
-
-3. **Quit the Game**:
-   To exit, simply type `q` when prompted.
-
-## Example Output
-### Hit Scenario
-```
-Step: 5
-Please enter number from 0 to 9 (q - quit): 4
-Hit! My number: 4
-Hit: 40.0% Miss: 60.0%
-Numbers: 7 3 5 6 4
+#### **Step 2: Make the Script Executable**
+Grant execute permissions to the script:
+```bash
+chmod +x intuition
 ```
 
-### Miss Scenario
-```
-Step: 6
-Please enter number from 0 to 9 (q - quit): 8
-Miss! My number: 2
-Hit: 33.3% Miss: 66.7%
-Numbers: 7 3 5 6 4 2
-```
+---
 
-### Invalid Input
-```
-Step: 7
-Please enter number from 0 to 9 (q - quit): 20
-Input error!
-Please enter number from 0 to 9 (q - quit):
+#### **Step 3: Run the Script**
+Run the script using:
+```bash
+./intuition
 ```
 
-## Troubleshooting
-- **Error: `Could not find or load main class`**:
-  - Ensure the file name is `Intuition.java`.
-  - Compile and run from the correct directory.
-  - If using packages, ensure the directory matches the package name.
+---
 
-- **No Color Output**:
-  - Verify your terminal supports ANSI color codes.
-  - For unsupported terminals, you can remove color codes from the code.
+### **3. How to Play**
+- **Input a number**: Enter a number between 0 and 9 when prompted.
+- **Quit the game**: Enter `q` to exit the script at any time.
+- The game will display whether your guess was correct, the random number, and statistics for hits and misses.
 
-## License
-This project is for educational purposes and is free to use and modify.
+---
 
+### **4. Expected Output**
+- **Correct guess**: 
+  ```
+  Hit! My number: 5
+  Hit: 40% Miss: 60%
+  Numbers: 7 5 2 2 1 9 4 7 8 5
+  ```
+- **Incorrect guess**:
+  ```
+  Miss! My number: 8
+  Hit: 30% Miss: 70%
+  Numbers: 7 5 2 2 1 9 4 7 8 5
+  ```
+- **Invalid input**:
+  ```
+  Input error! Please enter a number from 0 to 9 or 'q' to quit.
+  ```
+
+---
+
+### **5. Notes**
+- The game keeps track of the last 10 random numbers.
+- Numbers you guessed correctly are displayed in **green**.
+- Numbers you missed are displayed in **red**.
+
+Enjoy the game! 🎉
